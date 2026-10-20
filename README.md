@@ -2,12 +2,16 @@
 
 > **“Work less. Let your sloth handle the boring stuff.”**
 
+[![Render Live](https://img.shields.io/badge/Render-Live%20Demo-facc15?style=flat&logo=render&logoColor=black)](https://slothdesk-ai-24yo.onrender.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
 [![React + Vite + TypeScript](https://img.shields.io/badge/Frontend-React%20%7C%20Vite%20%7C%20TS-61DAFB.svg)](https://vitejs.dev/)
 [![Ollama](https://img.shields.io/badge/AI%20Engine-Ollama%20(Local)-white.svg)](https://ollama.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC.svg)](https://tailwindcss.com/)
+
+**🌐 Live Demo:** [https://slothdesk-ai-24yo.onrender.com](https://slothdesk-ai-24yo.onrender.com)
+
 
 SlothDesk AI is a **privacy-first desktop productivity assistant** built for the **“Slow and Steady” open-source AI challenge**. It brings open-weight local AI directly to your operating system to organize messy folders, suggest intelligent filenames based on document excerpts, search files through natural language queries, and prepare safe storage cleanup recommendations.
 
