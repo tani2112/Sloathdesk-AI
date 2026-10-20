@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: slothdesk-ai
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: OLLAMA_URL
+        value: http://127.0.0.1:11434
+      - key: SLOTH_AI_MODEL
+        value: qwen2.5:1.5b
