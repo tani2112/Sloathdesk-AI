@@ -10,12 +10,12 @@ echo "=========================================================="
 
 trap 'echo ""; echo "Shutting down SlothDesk AI..."; kill $(jobs -p) 2>/dev/null; exit 0' SIGINT SIGTERM
 
-./scripts/start_backend.sh &
+bash "$DIR/scripts/start_backend.sh" &
 BACKEND_PID=$!
 
 sleep 2
 
-./scripts/start_frontend.sh &
+bash "$DIR/scripts/start_frontend.sh" &
 FRONTEND_PID=$!
 
 echo ""
