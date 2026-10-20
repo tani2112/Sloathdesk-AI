@@ -42,21 +42,21 @@ export const FolderPickerModal: React.FC<FolderPickerModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-[#131a2a] border border-[#23304c] rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-        <div className="flex items-center justify-between pb-4 border-b border-[#1e293b]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+      <div className="bg-[#111116] border border-[#282834] rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+        <div className="flex items-center justify-between pb-4 border-b border-[#1f1f26]">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-purple-500/10 rounded-xl text-purple-400">
+            <div className="p-2 bg-yellow-400/10 rounded-xl text-yellow-400 border border-yellow-400/20">
               <Folder className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-semibold text-slate-100">Select Working Folder</h3>
-              <p className="text-xs text-slate-400">Choose which folder SlothDesk AI should manage</p>
+              <h3 className="text-base font-extrabold text-white">Select Working Folder</h3>
+              <p className="text-xs text-zinc-400">Choose which directory SlothDesk AI should organize</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800/60"
+            className="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-zinc-800"
           >
             <X className="w-4 h-4" />
           </button>
@@ -64,7 +64,7 @@ export const FolderPickerModal: React.FC<FolderPickerModalProps> = ({
 
         {/* Quick Presets */}
         <div className="mt-5 space-y-2">
-          <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
+          <label className="text-xs font-bold uppercase tracking-wider text-zinc-400 block">
             Common User Folders
           </label>
           <div className="grid grid-cols-2 gap-2">
@@ -76,15 +76,15 @@ export const FolderPickerModal: React.FC<FolderPickerModalProps> = ({
                   onClick={() => handleValidateAndSelect(f.path)}
                   className={`p-3 rounded-xl border text-left flex items-center justify-between transition-all ${
                     isSelected
-                      ? 'border-purple-500/50 bg-purple-500/15 text-white'
-                      : 'border-[#1e293b] bg-[#101624] text-slate-300 hover:border-slate-700 hover:bg-[#151c2e]'
+                      ? 'border-yellow-400/60 bg-yellow-400/15 text-white'
+                      : 'border-[#202028] bg-[#0c0c0f] text-zinc-300 hover:border-yellow-400/30 hover:bg-[#14141a]'
                   }`}
                 >
                   <div className="min-w-0 pr-2">
-                    <span className="text-sm font-semibold block">{f.label}</span>
-                    <span className="text-[11px] text-slate-400 truncate block">{f.path}</span>
+                    <span className="text-sm font-bold block">{f.label}</span>
+                    <span className="text-[11px] text-zinc-400 truncate block font-mono">{f.path}</span>
                   </div>
-                  {isSelected && <Check className="w-4 h-4 text-purple-400 shrink-0" />}
+                  {isSelected && <Check className="w-4 h-4 text-yellow-400 shrink-0" />}
                 </button>
               );
             })}
@@ -93,7 +93,7 @@ export const FolderPickerModal: React.FC<FolderPickerModalProps> = ({
 
         {/* Custom Path Input */}
         <div className="mt-5 space-y-2">
-          <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
+          <label className="text-xs font-bold uppercase tracking-wider text-zinc-400 block">
             Or Custom Path
           </label>
           <div className="flex gap-2">
@@ -102,12 +102,12 @@ export const FolderPickerModal: React.FC<FolderPickerModalProps> = ({
               value={customPath}
               onChange={(e) => setCustomPath(e.target.value)}
               placeholder="e.g. /home/user/my_folder or ~/Downloads"
-              className="flex-1 bg-[#0b0f17] border border-[#23304c] rounded-xl px-3.5 py-2.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 font-mono"
+              className="flex-1 bg-[#08080a] border border-[#262632] rounded-xl px-3.5 py-2.5 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-yellow-400 font-mono"
             />
             <button
               onClick={() => handleValidateAndSelect(customPath)}
               disabled={!customPath.trim() || isValidating}
-              className="px-4 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-semibold transition-all disabled:opacity-50"
+              className="sloth-btn-primary px-5 py-2.5 rounded-xl text-xs font-black transition-all disabled:opacity-50"
             >
               {isValidating ? 'Checking...' : 'Open'}
             </button>
@@ -121,10 +121,10 @@ export const FolderPickerModal: React.FC<FolderPickerModalProps> = ({
           )}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-[#1e293b] flex justify-end">
+        <div className="mt-6 pt-4 border-t border-[#1f1f26] flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white"
+            className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-white"
           >
             Cancel
           </button>

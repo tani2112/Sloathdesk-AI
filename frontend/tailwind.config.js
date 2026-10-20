@@ -9,22 +9,27 @@ export default {
     extend: {
       colors: {
         sloth: {
-          bg: '#0b0f17',
-          card: '#131a2a',
-          surface: '#1a2236',
-          border: '#23304c',
-          muted: '#8b9bb4',
-          accent: '#a855f7',
-          accentLight: '#c084fc',
-          teal: '#14b8a6',
-          tealLight: '#2dd4bf',
+          bg: '#08080a',
+          card: '#111115',
+          surface: '#17171d',
+          border: '#25252e',
+          borderGlow: '#facc15',
+          muted: '#8e8e99',
+          yellow: '#facc15',
+          yellowLight: '#fde047',
+          gold: '#eab308',
           amber: '#f59e0b',
-          rose: '#f43f5e',
+          amberDark: '#b45309',
           emerald: '#10b981',
+          rose: '#f43f5e',
         }
       },
       fontFamily: {
         sans: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'yellow-glow': '0 0 25px -4px rgba(250, 204, 21, 0.25)',
+        'yellow-lg': '0 10px 30px -5px rgba(250, 204, 21, 0.3)',
       },
       animation: {
         'sloth-float': 'slothFloat 4s ease-in-out infinite',

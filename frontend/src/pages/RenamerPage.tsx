@@ -103,36 +103,36 @@ export const RenamerPage: React.FC<RenamerPageProps> = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-bold text-white tracking-tight">AI File Renamer</h2>
+            <h2 className="text-2xl font-black text-white tracking-tight">AI File Renamer</h2>
             <span
-              className={`px-2 py-0.5 rounded-full text-xs font-semibold border ${
+              className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${
                 aiUsed
-                  ? 'bg-purple-500/10 text-purple-300 border-purple-500/30'
-                  : 'bg-teal-500/10 text-teal-300 border-teal-500/30'
+                  ? 'bg-yellow-400 text-black border-yellow-400'
+                  : 'bg-[#1a1a22] text-yellow-400 border-yellow-400/30'
               }`}
             >
               {aiUsed ? 'Ollama AI Enabled' : 'Content & Metadata Aware'}
             </span>
           </div>
-          <p className="text-sm text-slate-400 mt-1">
-            Replace messy names like <span className="text-slate-300 font-mono">IMG_2026_01.pdf</span> with descriptive titles based on real file contents.
+          <p className="text-sm text-zinc-400 mt-1">
+            Replace messy names like <span className="text-yellow-400 font-mono font-bold">scan_001.pdf</span> with descriptive titles based on real file contents.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           {/* Naming Style Selector */}
-          <div className="flex items-center bg-[#151c2e] border border-[#23304c] rounded-xl p-1 text-xs">
-            <span className="text-slate-400 px-2 flex items-center gap-1 font-medium">
-              <Settings2 className="w-3 h-3" /> Style:
+          <div className="flex items-center bg-[#121217] border border-[#252530] rounded-xl p-1 text-xs">
+            <span className="text-zinc-400 px-2 flex items-center gap-1 font-bold">
+              <Settings2 className="w-3.5 h-3.5 text-yellow-400" /> Style:
             </span>
             {(['kebab-case', 'snake_case', 'Title_Case'] as const).map((style) => (
               <button
                 key={style}
                 onClick={() => setNamingStyle(style)}
-                className={`px-2.5 py-1 rounded-lg font-medium transition-colors ${
+                className={`px-2.5 py-1 rounded-lg font-bold transition-colors ${
                   namingStyle === style
-                    ? 'bg-purple-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-yellow-400 text-black shadow-sm'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 {style}
@@ -143,7 +143,7 @@ export const RenamerPage: React.FC<RenamerPageProps> = ({
           <button
             onClick={handleFetchProposals}
             disabled={isLoading}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-teal-500 hover:from-purple-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-purple-900/30 flex items-center gap-2 transition-all disabled:opacity-50"
+            className="sloth-btn-primary px-5 py-2.5 rounded-xl text-xs font-black flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
             <span>{isLoading ? 'Reading & Analyzing...' : 'Generate AI Names'}</span>
@@ -152,29 +152,29 @@ export const RenamerPage: React.FC<RenamerPageProps> = ({
       </div>
 
       {/* Safety Banner */}
-      <div className="p-4 rounded-2xl bg-[#121929] border border-[#202c44] flex items-start gap-3">
-        <ShieldCheck className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
-        <div className="text-xs text-slate-300 leading-relaxed">
-          <span className="font-semibold text-white">Extension Preservation:</span> Original file extensions (e.g. <span className="font-mono text-teal-300">.pdf, .py, .docx</span>) are strictly kept intact. You can preview, edit any suggestion inline, or uncheck items before applying changes.
+      <div className="p-4 rounded-2xl bg-[#111116] border border-[#252530] flex items-start gap-3">
+        <ShieldCheck className="w-5 h-5 text-yellow-400 shrink-0 mt-0.5" />
+        <div className="text-xs text-zinc-300 leading-relaxed">
+          <span className="font-bold text-yellow-400">Extension Preservation:</span> Original extensions (e.g. <span className="font-mono text-yellow-300">.pdf, .py, .docx</span>) are strictly kept intact. You can preview, edit any suggestion inline, or uncheck items before applying changes.
         </div>
       </div>
 
       {/* Proposals List */}
       {proposals.length === 0 ? (
-        <div className="sloth-card p-12 border border-[#23304c] rounded-2xl text-center space-y-4">
-          <div className="mx-auto w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+        <div className="sloth-card p-12 border border-[#252530] rounded-2xl text-center space-y-4">
+          <div className="mx-auto w-16 h-16 rounded-2xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400">
             <FileEdit className="w-8 h-8" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">No active proposals</h3>
-            <p className="text-xs text-slate-400 max-w-sm mx-auto mt-1">
+            <h3 className="text-base font-extrabold text-white">No active proposals</h3>
+            <p className="text-xs text-zinc-400 max-w-sm mx-auto mt-1">
               Click &quot;Generate AI Names&quot; to inspect document contents and generate smart rename suggestions.
             </p>
           </div>
           <button
             onClick={handleFetchProposals}
             disabled={isLoading}
-            className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold transition-colors"
+            className="sloth-btn-primary px-5 py-2 rounded-xl text-xs font-black"
           >
             {isLoading ? 'Thinking...' : 'Analyze Folder Now'}
           </button>
@@ -182,30 +182,30 @@ export const RenamerPage: React.FC<RenamerPageProps> = ({
       ) : (
         <div className="space-y-4">
           {/* Action Bar */}
-          <div className="flex items-center justify-between bg-[#131b2b] border border-[#23304c] p-3 rounded-xl text-xs">
+          <div className="flex items-center justify-between bg-[#121217] border border-[#252530] p-3 rounded-xl text-xs">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => handleToggleSelectAll(true)}
-                className="text-purple-400 hover:text-purple-300 font-semibold"
+                className="text-yellow-400 hover:text-yellow-300 font-extrabold"
               >
                 Select All
               </button>
-              <span className="text-slate-600">|</span>
+              <span className="text-zinc-600">|</span>
               <button
                 onClick={() => handleToggleSelectAll(false)}
-                className="text-slate-400 hover:text-slate-200"
+                className="text-zinc-400 hover:text-zinc-200 font-medium"
               >
                 Deselect All
               </button>
-              <span className="text-slate-400 ml-2">
-                Selected: <strong className="text-white">{selectedCount}</strong> / {proposals.length}
+              <span className="text-zinc-400 ml-2">
+                Selected: <strong className="text-yellow-400 font-bold">{selectedCount}</strong> / {proposals.length}
               </span>
             </div>
 
             <button
               onClick={() => setShowConfirmModal(true)}
               disabled={selectedCount === 0 || isExecuting}
-              className="px-4 py-2 bg-gradient-to-r from-purple-600 to-teal-500 hover:from-purple-500 hover:to-teal-400 text-white font-bold rounded-lg shadow-md disabled:opacity-40 flex items-center gap-2"
+              className="sloth-btn-primary px-4 py-2 text-xs font-black rounded-lg disabled:opacity-40 flex items-center gap-2"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
               <span>Apply {selectedCount} Renames</span>
@@ -213,22 +213,22 @@ export const RenamerPage: React.FC<RenamerPageProps> = ({
           </div>
 
           {/* Table of Proposals */}
-          <div className="sloth-card border border-[#23304c] rounded-2xl overflow-hidden">
-            <div className="divide-y divide-[#1b253b]">
+          <div className="sloth-card border border-[#252530] rounded-2xl overflow-hidden">
+            <div className="divide-y divide-[#1c1c24]">
               {proposals.map((item, idx) => (
                 <div
                   key={idx}
                   className={`p-4 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 ${
-                    item.selected ? 'bg-[#121929]' : 'bg-[#0d1320] opacity-60'
+                    item.selected ? 'bg-[#111116]' : 'bg-[#0a0a0d] opacity-60'
                   }`}
                 >
                   <div className="flex items-start gap-3 min-w-0 flex-1">
                     <button
                       onClick={() => handleToggleItem(idx)}
-                      className="mt-1 text-slate-400 hover:text-white shrink-0"
+                      className="mt-1 text-zinc-400 hover:text-yellow-400 shrink-0"
                     >
                       {item.selected ? (
-                        <CheckSquare className="w-4 h-4 text-purple-400" />
+                        <CheckSquare className="w-4 h-4 text-yellow-400" />
                       ) : (
                         <Square className="w-4 h-4" />
                       )}
@@ -236,29 +236,29 @@ export const RenamerPage: React.FC<RenamerPageProps> = ({
 
                     <div className="min-w-0 flex-1 space-y-1.5">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-mono text-slate-400 line-through">
+                        <span className="text-xs font-mono text-zinc-400 line-through">
                           {item.original_name}
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                        <ArrowRight className="w-3.5 h-3.5 text-yellow-400 shrink-0" />
                         <div className="flex-1 min-w-[200px]">
                           <input
                             type="text"
                             value={item.proposed_name}
                             onChange={(e) => handleEditProposedName(idx, e.target.value)}
-                            className="w-full bg-[#0a0e17] border border-[#2a3854] rounded-lg px-2.5 py-1 text-xs font-mono text-teal-300 focus:outline-none focus:border-teal-400"
+                            className="w-full bg-[#08080a] border border-[#2a2a35] rounded-lg px-2.5 py-1 text-xs font-mono text-yellow-300 font-bold focus:outline-none focus:border-yellow-400"
                           />
                         </div>
                       </div>
 
                       {item.reason && (
-                        <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0" />
+                        <div className="text-[11px] text-zinc-400 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0" />
                           <span>{item.reason}</span>
                         </div>
                       )}
 
                       {item.preview_snippet && (
-                        <div className="text-[10px] text-slate-500 font-mono bg-[#090d16] p-2 rounded border border-[#182236] truncate">
+                        <div className="text-[10px] text-zinc-400 font-mono bg-[#08080b] p-2 rounded border border-[#202028] truncate">
                           Excerpt: &quot;{item.preview_snippet}&quot;
                         </div>
                       )}

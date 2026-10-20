@@ -41,33 +41,33 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({ historyData, onUndoBat
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <h2 className="text-2xl font-bold text-white tracking-tight">Activity History & Undo</h2>
-          <span className="px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/30 text-xs font-semibold">
+          <h2 className="text-2xl font-black text-white tracking-tight">Activity History & Undo</h2>
+          <span className="px-2.5 py-0.5 rounded-full bg-yellow-400/10 text-yellow-300 border border-yellow-400/30 text-xs font-bold">
             SQLite Audit Trail
           </span>
         </div>
-        <p className="text-sm text-slate-400 mt-1">
+        <p className="text-sm text-zinc-400 mt-1">
           Review every organization, AI rename, and cleanup operation. Revert supported batches safely with automatic conflict detection.
         </p>
       </div>
 
       {/* Reversibility Banner */}
-      <div className="p-4 rounded-2xl bg-[#121929] border border-[#202c44] flex items-start gap-3">
-        <ShieldCheck className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
-        <div className="text-xs text-slate-300 leading-relaxed">
-          <span className="font-semibold text-white">Conflict-Protected Undo:</span> When rolling back an operation, SlothDesk AI verifies that the original location has not been taken by a newly created file. If a conflict is detected, the operation halts safely without overwriting.
+      <div className="p-4 rounded-2xl bg-[#111116] border border-[#252530] flex items-start gap-3">
+        <ShieldCheck className="w-5 h-5 text-yellow-400 shrink-0 mt-0.5" />
+        <div className="text-xs text-zinc-300 leading-relaxed">
+          <span className="font-bold text-yellow-400">Conflict-Protected Undo:</span> When rolling back an operation, SlothDesk AI verifies that the original location has not been taken by another newly created file. If a conflict is detected, the operation halts safely without overwriting.
         </div>
       </div>
 
       {/* History List */}
       {historyData.length === 0 ? (
-        <div className="sloth-card p-12 border border-[#23304c] rounded-2xl text-center space-y-4">
-          <div className="mx-auto w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+        <div className="sloth-card p-12 border border-[#252530] rounded-2xl text-center space-y-4">
+          <div className="mx-auto w-16 h-16 rounded-2xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400">
             <History className="w-8 h-8" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">No activity recorded</h3>
-            <p className="text-xs text-slate-400 max-w-sm mx-auto mt-1">
+            <h3 className="text-base font-extrabold text-white">No activity recorded</h3>
+            <p className="text-xs text-zinc-400 max-w-sm mx-auto mt-1">
               File operations will appear here automatically once you organize, rename, or clean up folders.
             </p>
           </div>
@@ -78,32 +78,32 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({ historyData, onUndoBat
             const isExpanded = expandedBatch === item.batch_id;
             const canUndo = !item.undone;
 
-            let badgeColor = 'bg-blue-500/15 text-blue-300 border-blue-500/30';
+            let badgeColor = 'bg-yellow-400/15 text-yellow-300 border-yellow-400/30';
             let Icon = FolderTree;
             if (item.batch_type === 'RENAME') {
-              badgeColor = 'bg-purple-500/15 text-purple-300 border-purple-500/30';
+              badgeColor = 'bg-amber-400/15 text-amber-300 border-amber-400/30';
               Icon = FileEdit;
             } else if (item.batch_type === 'CLEANUP') {
-              badgeColor = 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+              badgeColor = 'bg-orange-400/15 text-orange-300 border-orange-400/30';
               Icon = Trash2;
             }
 
             return (
               <div
                 key={item.batch_id}
-                className="sloth-card border border-[#23304c] rounded-2xl overflow-hidden transition-all"
+                className="sloth-card border border-[#252530] rounded-2xl overflow-hidden transition-all"
               >
                 {/* Batch Header */}
-                <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-[#111726]">
+                <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-[#0e0e12]">
                   <div className="flex items-center gap-3 min-w-0">
                     <button
                       onClick={() => toggleExpand(item.batch_id)}
-                      className="text-slate-400 hover:text-white p-1 rounded-lg"
+                      className="text-zinc-400 hover:text-white p-1 rounded-lg"
                     >
                       {isExpanded ? (
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-4 h-4 text-yellow-400" />
                       ) : (
-                        <ChevronRight className="w-4 h-4" />
+                        <ChevronRight className="w-4 h-4 text-zinc-400" />
                       )}
                     </button>
 
@@ -114,24 +114,24 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({ historyData, onUndoBat
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-sm font-bold text-white">{item.description}</span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold border uppercase tracking-wider bg-slate-800 text-slate-300 border-slate-700">
+                        <span className="text-[10px] px-2 py-0.5 rounded-full font-bold border uppercase tracking-wider bg-zinc-900 text-yellow-400 border-yellow-400/30">
                           {item.batch_type}
                         </span>
                         {item.undone && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-300 border border-rose-500/30 font-semibold">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">
                             Undone / Reverted
                           </span>
                         )}
                       </div>
 
-                      <div className="flex items-center gap-4 text-xs text-slate-400 mt-1">
+                      <div className="flex items-center gap-4 text-xs text-zinc-400 mt-1">
                         <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3 text-slate-500" />
+                          <Calendar className="w-3 h-3 text-zinc-600" />
                           {item.timestamp_formatted}
                         </span>
                         <span>•</span>
                         <span>{item.total_files} file(s) affected</span>
-                        <span className="font-mono text-[11px] text-slate-500 truncate max-w-xs">
+                        <span className="font-mono text-[11px] text-zinc-500 truncate max-w-xs">
                           {item.folder_path}
                         </span>
                       </div>
@@ -141,7 +141,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({ historyData, onUndoBat
                   {canUndo && (
                     <button
                       onClick={() => setUndoTarget(item)}
-                      className="px-3 py-1.5 rounded-xl bg-[#182234] hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 border border-[#273852] text-xs font-semibold flex items-center gap-1.5 transition-colors shrink-0"
+                      className="px-3 py-1.5 rounded-xl bg-[#171720] hover:bg-yellow-400 hover:text-black text-yellow-400 border border-yellow-400/30 text-xs font-bold flex items-center gap-1.5 transition-all shrink-0"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Undo Batch</span>
@@ -151,22 +151,22 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({ historyData, onUndoBat
 
                 {/* Expanded Operations Details */}
                 {isExpanded && (
-                  <div className="p-4 bg-[#0c121e] border-t border-[#1e293b] space-y-2 text-xs">
-                    <h5 className="font-semibold text-slate-400 uppercase tracking-wider text-[10px]">
+                  <div className="p-4 bg-[#0a0a0d] border-t border-[#1e1e26] space-y-2 text-xs">
+                    <h5 className="font-bold text-zinc-400 uppercase tracking-wider text-[10px]">
                       Recorded File Changes:
                     </h5>
                     {item.operations.length === 0 ? (
-                      <p className="text-slate-500 text-xs">No individual operations recorded.</p>
+                      <p className="text-zinc-500 text-xs">No individual operations recorded.</p>
                     ) : (
-                      <div className="divide-y divide-[#182236] font-mono text-[11px]">
+                      <div className="divide-y divide-[#181820] font-mono text-[11px]">
                         {item.operations.map((op) => (
                           <div key={op.id} className="py-2 flex items-center justify-between gap-4">
                             <div className="min-w-0 flex-1 truncate">
-                              <span className="text-slate-400">{op.original_path}</span>
-                              <span className="text-purple-400 mx-2">→</span>
-                              <span className="text-teal-300">{op.new_path || '(deleted)'}</span>
+                              <span className="text-zinc-400">{op.original_path}</span>
+                              <span className="text-yellow-400 mx-2">→</span>
+                              <span className="text-yellow-300 font-bold">{op.new_path || '(deleted)'}</span>
                             </div>
-                            <span className="text-slate-500 shrink-0 uppercase text-[10px]">
+                            <span className="text-zinc-500 shrink-0 uppercase text-[10px] font-bold">
                               {op.operation_type}
                             </span>
                           </div>

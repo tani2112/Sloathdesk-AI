@@ -29,12 +29,12 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-[#131a2a] border border-[#23304c] rounded-2xl max-w-lg w-full p-6 shadow-2xl relative overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+      <div className="bg-[#111116] border border-[#282834] rounded-2xl max-w-lg w-full p-6 shadow-2xl relative overflow-hidden">
         {/* Glow accent */}
         <div
           className={`absolute top-0 left-0 right-0 h-1.5 ${
-            isDestructive ? 'bg-gradient-to-r from-amber-500 to-rose-500' : 'bg-gradient-to-r from-purple-500 to-teal-400'
+            isDestructive ? 'bg-gradient-to-r from-amber-500 to-rose-600' : 'bg-gradient-to-r from-yellow-400 to-amber-500'
           }`}
         />
 
@@ -43,18 +43,18 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
             className={`p-3 rounded-xl shrink-0 ${
               isDestructive
                 ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
-                : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
+                : 'bg-yellow-400/10 text-yellow-400 border border-yellow-400/20'
             }`}
           >
             {isDestructive ? <ShieldAlert className="w-6 h-6" /> : <AlertCircle className="w-6 h-6" />}
           </div>
 
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
-            <p className="text-sm text-slate-300 mt-1.5 leading-relaxed">{description}</p>
+            <h3 className="text-lg font-extrabold text-white">{title}</h3>
+            <p className="text-sm text-zinc-300 mt-1.5 leading-relaxed">{description}</p>
 
             {details && details.length > 0 && (
-              <div className="mt-3 p-3 bg-[#0d1320] border border-[#1e293b] rounded-xl max-h-40 overflow-y-auto text-xs text-slate-400 font-mono space-y-1">
+              <div className="mt-3 p-3 bg-[#08080a] border border-[#202028] rounded-xl max-h-40 overflow-y-auto text-xs text-zinc-300 font-mono space-y-1">
                 {details.map((item, idx) => (
                   <div key={idx} className="truncate">
                     • {item}
@@ -65,12 +65,12 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-[#1e293b]">
+        <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-[#1f1f26]">
           <button
             type="button"
             onClick={onCancel}
             disabled={isLoading}
-            className="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors disabled:opacity-50"
+            className="px-4 py-2 rounded-xl text-sm font-bold text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors disabled:opacity-50"
           >
             {cancelLabel}
           </button>
@@ -79,15 +79,15 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
             type="button"
             onClick={onConfirm}
             disabled={isLoading}
-            className={`px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg transition-all flex items-center gap-2 ${
+            className={`px-5 py-2.5 rounded-xl text-sm font-black shadow-lg transition-all flex items-center gap-2 ${
               isDestructive
                 ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-rose-900/30'
-                : 'bg-gradient-to-r from-purple-600 to-teal-500 hover:from-purple-500 hover:to-teal-400 text-white shadow-purple-900/30'
+                : 'sloth-btn-primary'
             } disabled:opacity-50`}
           >
             {isLoading ? (
               <>
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                 <span>Processing...</span>
               </>
             ) : (

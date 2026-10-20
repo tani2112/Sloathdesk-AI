@@ -49,37 +49,38 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'settings' as NavTab, label: 'Settings', icon: Settings },
   ];
 
-  // Folder name display
   const folderName = activeFolder.split('/').filter(Boolean).pop() || activeFolder;
 
   return (
-    <aside className="w-64 bg-[#0d1320] border-r border-[#1a2336] flex flex-col h-screen shrink-0 select-none">
+    <aside className="w-64 bg-[#09090b] border-r border-[#1f1f26] flex flex-col h-screen shrink-0 select-none">
       {/* Brand Header */}
-      <div className="p-5 border-b border-[#1a2336] flex items-center gap-3">
+      <div className="p-5 border-b border-[#1f1f26] flex items-center gap-3">
         <SlothMascot mood={slothMood} size={46} />
         <div>
           <div className="flex items-center gap-1.5">
-            <h1 className="font-bold text-base tracking-wide text-white">SlothDesk</h1>
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase tracking-wider">
+            <h1 className="font-extrabold text-base tracking-wide text-white">
+              Sloth<span className="text-yellow-400">Desk</span>
+            </h1>
+            <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-yellow-400 text-black uppercase tracking-wider shadow-sm">
               AI
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-normal">Lazy, local assistant</p>
+          <p className="text-[11px] text-zinc-400 font-normal">Lazy, local assistant</p>
         </div>
       </div>
 
       {/* Active Folder Selector Pill */}
-      <div className="p-3 mx-3 my-2 bg-[#131b2c] border border-[#23304c] rounded-xl flex items-center justify-between group hover:border-purple-500/40 transition-colors">
+      <div className="p-3 mx-3 my-2.5 bg-[#121216] border border-[#262630] rounded-xl flex items-center justify-between group hover:border-yellow-400/50 transition-colors">
         <div className="flex items-center gap-2.5 min-w-0">
-          <div className="p-1.5 rounded-lg bg-teal-500/10 text-teal-400">
+          <div className="p-1.5 rounded-lg bg-yellow-400/10 text-yellow-400 border border-yellow-400/20">
             <Folder className="w-4 h-4" />
           </div>
           <div className="min-w-0">
-            <span className="text-[10px] uppercase font-semibold text-slate-400 block tracking-wider">
-              Target Folder
+            <span className="text-[10px] uppercase font-bold text-zinc-400 block tracking-wider">
+              Working Folder
             </span>
             <span
-              className="text-xs font-medium text-slate-200 truncate block max-w-[120px]"
+              className="text-xs font-semibold text-zinc-200 truncate block max-w-[120px]"
               title={activeFolder}
             >
               {folderName}
@@ -88,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
         <button
           onClick={onOpenFolderModal}
-          className="text-[11px] font-semibold text-purple-400 hover:text-purple-300 px-2 py-1 rounded-md hover:bg-purple-500/10 transition-colors"
+          className="text-[11px] font-bold text-yellow-400 hover:text-yellow-300 px-2 py-1 rounded-md hover:bg-yellow-400/10 transition-colors"
         >
           Change
         </button>
@@ -103,15 +104,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               key={item.id}
               onClick={() => onSelectTab(item.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                 isActive
-                  ? 'bg-gradient-to-r from-purple-600/25 to-teal-500/15 text-white border border-purple-500/40 shadow-sm shadow-purple-950/40'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                  ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/15 to-transparent text-yellow-300 border-l-4 border-yellow-400 shadow-sm shadow-yellow-500/10'
+                  : 'text-zinc-400 hover:text-zinc-100 hover:bg-[#15151b]'
               }`}
             >
               <Icon
                 className={`w-4 h-4 transition-colors ${
-                  isActive ? 'text-teal-400' : 'text-slate-400 group-hover:text-slate-300'
+                  isActive ? 'text-yellow-400' : 'text-zinc-500 group-hover:text-zinc-300'
                 }`}
               />
               <span>{item.label}</span>
@@ -121,31 +122,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       {/* AI Engine Status Card Footer */}
-      <div className="p-3 border-t border-[#1a2336] bg-[#0b0f17]/60">
-        <div className="p-2.5 rounded-xl bg-[#131b2c] border border-[#23304c] flex items-center justify-between">
+      <div className="p-3 border-t border-[#1f1f26] bg-[#070709]">
+        <div className="p-2.5 rounded-xl bg-[#121216] border border-[#262630] flex items-center justify-between">
           <div className="flex items-center gap-2 min-w-0">
-            <Cpu className="w-4 h-4 text-purple-400 shrink-0" />
+            <Cpu className="w-4 h-4 text-yellow-400 shrink-0" />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
                 <span
                   className={`w-2 h-2 rounded-full shrink-0 ${
                     aiStatus?.is_running && aiStatus?.active
-                      ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]'
-                      : 'bg-amber-400'
+                      ? 'bg-yellow-400 shadow-[0_0_10px_#facc15]'
+                      : 'bg-zinc-600'
                   }`}
                 />
-                <span className="text-[11px] font-semibold text-slate-200 truncate">
+                <span className="text-[11px] font-bold text-zinc-200 truncate">
                   {aiStatus?.is_running && aiStatus?.active ? aiStatus.selected_model : 'Offline Fallback'}
                 </span>
               </div>
-              <span className="text-[10px] text-slate-400 block truncate">
-                {aiStatus?.is_running && aiStatus?.active ? 'Local Ollama Ready' : 'Heuristics Only'}
+              <span className="text-[10px] text-zinc-400 block truncate">
+                {aiStatus?.is_running && aiStatus?.active ? 'Local AI Active' : 'Heuristics Only'}
               </span>
             </div>
           </div>
           <button
             onClick={() => onSelectTab('settings')}
-            className="text-[10px] text-slate-400 hover:text-purple-300 font-medium underline"
+            className="text-[10px] text-yellow-400 hover:text-yellow-300 font-bold underline"
           >
             Config
           </button>
